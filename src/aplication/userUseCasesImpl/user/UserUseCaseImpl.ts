@@ -1,6 +1,6 @@
 import { UserDTO } from "../../dtos/userDTO";
 import { IuserRepository } from "../../interfaces/repositories/user/IUserRepository";
-import { IUserUseCases } from "../../userUseCase/user/IUserUseCases";
+import { IUserUseCases } from "../../interfaces/userUseCase/user/IUserUseCases";
 import { IUser } from "../../interfaces/user/IUser";
 import { IUserServices } from "../../interfaces/services/IUserServices";
 import { AlreadyExistsError } from "../../../domain/exeptions/AlreadyExistsError";
@@ -21,13 +21,17 @@ export class UserUseCaseImpl implements IUserUseCases {
     return newUser;
   }
 
-  async update(id: string, email?: string, password?: string): Promise<IUser> {
+  async update(
+    id: string,
+    email?: string,
+    password?: string
+  ): Promise<Omit<IUser, "password">> {
     const userUpdated = await this._repository.updateUser(id, email, password);
     return userUpdated;
   }
 
-  delete(id: string): Promise<void> {
-    this._userService.validateDelete(id);
-    return this._repository.deleteUser(id);
+  async delete(id: string): Promise<void> {
+    await this._userService.validateDelete(id);
+    await this._repository.deleteUser(id);
   }
 }
