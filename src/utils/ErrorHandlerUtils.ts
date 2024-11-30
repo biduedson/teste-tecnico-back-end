@@ -7,7 +7,8 @@ export const errorHandlerUtils = (error: Error): IHttpResponse<any> => {
   if (
     error instanceof AlreadyExistsError ||
     error instanceof BadRequestError ||
-    error instanceof NotFoundError
+    error instanceof NotFoundError ||
+    error instanceof AlreadyExistsError
   ) {
     return {
       statusCode: error.statusCode,
@@ -16,6 +17,6 @@ export const errorHandlerUtils = (error: Error): IHttpResponse<any> => {
   }
   return {
     statusCode: 500,
-    body: `Erro interno do servidor, erro: ${error.message}`,
+    body: `Erro interno do servidor, erro: ${error}`,
   };
 };
