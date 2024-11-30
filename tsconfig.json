@@ -6,6 +6,7 @@
     "outDir": "./dist",
     "rootDir": "./src",
     "moduleResolution": "node",
+    "experimentalDecorators": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "resolveJsonModule": true
