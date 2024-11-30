@@ -1,6 +1,6 @@
 import { UserDTO } from "../../dtos/userDTO";
 import { IuserRepository } from "../../interfaces/repositories/user/IUserRepository";
-import { IUserUseCases } from "../../interfaces/useCaseImpl/user/IUserUseCases";
+import { IUserUseCases } from "../../useCaseImpl/user/IUserUseCases";
 import { IUser } from "../../interfaces/user/IUser";
 
 export class UserUseCaseImpl implements IUserUseCases {
