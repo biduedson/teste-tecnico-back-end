@@ -4,6 +4,7 @@ import { IUserUseCases } from "../../interfaces/userUseCase/user/IUserUseCases";
 import { IUser } from "../../interfaces/user/IUser";
 import { IUserServices } from "../../interfaces/services/IUserServices";
 import { AlreadyExistsError } from "../../../domain/exeptions/AlreadyExistsError";
+import { UpdateUserDTO } from "../../dtos/UpdateUserDTO";
 
 export class UserUseCaseImpl implements IUserUseCases {
   constructor(
@@ -21,17 +22,23 @@ export class UserUseCaseImpl implements IUserUseCases {
     return newUser;
   }
 
-  async update(
-    id: string,
-    email?: string,
-    password?: string
-  ): Promise<Omit<IUser, "password">> {
-    const userUpdated = await this._repository.updateUser(id, email, password);
+  async update(userUpdat: UpdateUserDTO): Promise<Omit<IUser, "password">> {
+    await this._userService.validateUpdate(userUpdat);
+    const userUpdated = await this._repository.updateUser(
+      userUpdat.id,
+      userUpdat.email,
+      userUpdat.password
+    );
     return userUpdated;
   }
 
   async delete(id: string): Promise<void> {
     await this._userService.validateDelete(id);
     await this._repository.deleteUser(id);
+  }
+
+  async users(): Promise<Omit<IUser, "password">[]> {
+    const users = await this._repository.users();
+    return users;
   }
 }

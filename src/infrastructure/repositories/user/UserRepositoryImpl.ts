@@ -4,6 +4,17 @@ import { IUser } from "../../../aplication/interfaces/user/IUser";
 import { prisma } from "../../database/client";
 
 export class UserRepositoryImpl implements IuserRepository {
+  async users(): Promise<Omit<IUser, "password">[]> {
+    const users = await prisma.user.findMany({
+      select: {
+        id: true,
+        email: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
+    return users;
+  }
   async createUser(
     email: string,
     password: string
@@ -27,12 +38,18 @@ export class UserRepositoryImpl implements IuserRepository {
     id: string,
     email?: string,
     passaword?: string
-  ): Promise<User> {
+  ): Promise<Omit<IUser, "password">> {
     const userUpdated = await prisma.user.update({
       where: { id },
       data: {
         email: email,
         password: passaword,
+      },
+      select: {
+        id: true,
+        email: true,
+        createdAt: true,
+        updatedAt: true,
       },
     });
     return userUpdated;

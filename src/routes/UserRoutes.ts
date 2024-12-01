@@ -25,3 +25,13 @@ userRoutes.delete("/user/:id", async (req: Request, res: Response) => {
   });
   res.status(statusCode).json(body);
 });
+
+userRoutes.patch("/user", async (req: Request, res: Response) => {
+  const { statusCode, body } = await userController.update({ body: req.body! });
+  res.status(statusCode).json(body);
+});
+
+userRoutes.get("/user", async (req: Request, res: Response) => {
+  const { statusCode, body } = await userController.users();
+  res.status(statusCode).json(body);
+});
