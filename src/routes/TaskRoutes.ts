@@ -1,0 +1,37 @@
+import { Router } from "express";
+import { Request, Response } from "express";
+import { TaskRepositoryImpl } from "../infrastructure/repositories/task/TaskRepositoryImpl";
+import { TaskServicesImpl } from "../aplication/serviceImpl/TaskServicesImpl";
+import { TaskController } from "../infrastructure/http/controllers/TaskController";
+import { TaskUseCAsesImpl } from "../aplication/taskUseCasesImpl/TasUseCasesImpl";
+import { UserRepositoryImpl } from "../infrastructure/repositories/user/UserRepositoryImpl";
+
+export const taskRoutes = Router();
+
+const repository = new TaskRepositoryImpl();
+const userRepository = new UserRepositoryImpl();
+const services = new TaskServicesImpl(repository, userRepository);
+const useCases = new TaskUseCAsesImpl(repository, services);
+const controller = new TaskController(useCases);
+
+taskRoutes.post("/task", async (req: Request, res: Response) => {
+  const { statusCode, body } = await controller.create({ body: req.body! });
+  res.status(statusCode).json(body);
+});
+
+taskRoutes.delete("/task/:id", async (req: Request, res: Response) => {
+  const { statusCode, body } = await controller.delete({
+    params: req.params,
+  });
+  res.status(statusCode).json(body);
+});
+
+taskRoutes.patch("/task", async (req: Request, res: Response) => {
+  const { statusCode, body } = await controller.update({ body: req.body! });
+  res.status(statusCode).json(body);
+});
+
+taskRoutes.get("/task", async (req: Request, res: Response) => {
+  const { statusCode, body } = await controller.tasks();
+  res.status(statusCode).json(body);
+});

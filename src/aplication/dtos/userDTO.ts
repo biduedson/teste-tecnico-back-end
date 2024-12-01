@@ -8,7 +8,7 @@ import {
 } from "class-validator";
 import "reflect-metadata";
 import { Type } from "class-transformer";
-import { CreateTaskDTO } from "./task/createTaskDTO";
+import { CreateTaskDTO } from "./task/CreateTaskDTO";
 
 export class UserDTO {
   @IsString({ message: "O e-mail do usuário deve ser uma string." })
