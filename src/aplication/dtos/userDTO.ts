@@ -4,8 +4,11 @@ import {
   IsNotEmpty,
   IsOptional,
   MinLength,
+  ValidateNested,
 } from "class-validator";
 import "reflect-metadata";
+import { Type } from "class-transformer";
+import { CreateTaskDTO } from "./task/createTaskDTO";
 
 export class UserDTO {
   @IsString({ message: "O e-mail do usuário deve ser uma string." })
@@ -17,8 +20,14 @@ export class UserDTO {
   @IsNotEmpty({ message: "A senha não pode estar vazia." })
   password: string;
 
-  constructor(email: string, password: string) {
+  @ValidateNested({ each: true })
+  @Type(() => CreateTaskDTO)
+  @IsOptional()
+  tasks?: CreateTaskDTO[];
+
+  constructor(email: string, password: string, tasks?: CreateTaskDTO[]) {
     this.email = email;
     this.password = password;
+    this.tasks = tasks;
   }
 }

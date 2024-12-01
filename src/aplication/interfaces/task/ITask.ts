@@ -4,6 +4,6 @@ export interface ITask {
   description: string;
   status: "PENDING" | "COMPLETE";
   userId: string;
-  createdAt: Date;
+  createdAt?: Date;
   updatedAt?: Date;
 }
