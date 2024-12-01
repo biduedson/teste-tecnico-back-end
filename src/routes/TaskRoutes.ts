@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { NextFunction, Router } from "express";
 import { Request, Response } from "express";
 import { TaskRepositoryImpl } from "../infrastructure/repositories/task/TaskRepositoryImpl";
 import { TaskServicesImpl } from "../aplication/serviceImpl/TaskServicesImpl";
@@ -14,24 +14,37 @@ const services = new TaskServicesImpl(repository, userRepository);
 const useCases = new TaskUseCAsesImpl(repository, services);
 const controller = new TaskController(useCases);
 
-taskRoutes.post("/task", async (req: Request, res: Response) => {
-  const { statusCode, body } = await controller.create({ body: req.body! });
-  res.status(statusCode).json(body);
-});
+taskRoutes.post(
+  "/task",
 
-taskRoutes.delete("/task/:id", async (req: Request, res: Response) => {
-  const { statusCode, body } = await controller.delete({
-    params: req.params,
-  });
-  res.status(statusCode).json(body);
-});
+  async (req: Request, res: Response) => {
+    const { statusCode, body } = await controller.create({ body: req.body! });
+    res.status(statusCode).json(body);
+  }
+);
 
-taskRoutes.patch("/task", async (req: Request, res: Response) => {
-  const { statusCode, body } = await controller.update({ body: req.body! });
-  res.status(statusCode).json(body);
-});
+taskRoutes.delete(
+  "/task/:id",
+  async (req: Request, res: Response, next: NextFunction) => {
+    const { statusCode, body } = await controller.delete({
+      params: req.params,
+    });
+    res.status(statusCode).json(body);
+  }
+);
 
-taskRoutes.get("/task", async (req: Request, res: Response) => {
-  const { statusCode, body } = await controller.tasks();
-  res.status(statusCode).json(body);
-});
+taskRoutes.patch(
+  "/task",
+  async (req: Request, res: Response, next: NextFunction) => {
+    const { statusCode, body } = await controller.update({ body: req.body! });
+    res.status(statusCode).json(body);
+  }
+);
+
+taskRoutes.get(
+  "/task",
+  async (req: Request, res: Response, next: NextFunction) => {
+    const { statusCode, body } = await controller.tasks();
+    res.status(statusCode).json(body);
+  }
+);

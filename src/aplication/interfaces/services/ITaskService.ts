@@ -1,3 +1,4 @@
+import { IHttpRequest } from "../http/IHttpRequest";
 import { ITask } from "../task/ITask";
 
 export interface ITaskService {

@@ -2,7 +2,7 @@ import { IHttpResponse } from "../aplication/interfaces/http/IHttpResponse";
 import { AlreadyExistsError } from "../domain/exeptions/AlreadyExistsError";
 import { BadRequestError } from "../domain/exeptions/BadRequestError";
 import { NotFoundError } from "../domain/exeptions/NotFoundError";
-import { TokenExpiredError } from "../domain/exeptions/TokenExpiredError";
+import { TokenError } from "../domain/exeptions/TokenError";
 
 export const errorHandlerUtils = (error: Error): IHttpResponse<any> => {
   if (
@@ -10,7 +10,7 @@ export const errorHandlerUtils = (error: Error): IHttpResponse<any> => {
     error instanceof BadRequestError ||
     error instanceof NotFoundError ||
     error instanceof AlreadyExistsError ||
-    error instanceof TokenExpiredError
+    error instanceof TokenError
   ) {
     return {
       statusCode: error.statusCode,
