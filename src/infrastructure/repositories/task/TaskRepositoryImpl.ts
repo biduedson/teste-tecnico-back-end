@@ -2,9 +2,13 @@ import { ITaskRepository } from "../../../aplication/interfaces/repositories/tas
 import { ITask } from "../../../aplication/interfaces/task/ITask";
 import { prisma } from "../../database/client";
 
-export class TaskRepository implements ITaskRepository {
+export class TaskRepositoryImpl implements ITaskRepository {
   async tasks(): Promise<ITask[]> {
-    const tasks = await prisma.task.findMany({});
+    const tasks = await prisma.task.findMany({
+      include: {
+        user: true,
+      },
+    });
     return tasks;
   }
 
@@ -26,5 +30,9 @@ export class TaskRepository implements ITaskRepository {
 
   async delete(id: string): Promise<void> {
     await prisma.task.delete({ where: { id } });
+  }
+  async findTask(id: string): Promise<ITask | null> {
+    const task = await prisma.task.findUnique({ where: { id } });
+    return task;
   }
 }
