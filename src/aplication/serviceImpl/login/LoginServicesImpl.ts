@@ -9,6 +9,7 @@ import { IUser } from "../../interfaces/user/IUser";
 import { ILoginResponse } from "../../interfaces/httpResponses/ILoginResponse";
 import { UnauthorizedError } from "../../../domain/exeptions/UnauthorizedError";
 import { ILoginServices } from "../../interfaces/services/ILoginServices";
+import { redisCacheService } from "../../../infrastructure/cache/RedisCacheService";
 
 export class LoginServicesImpl implements ILoginServices {
   constructor(private readonly _userRepository: IuserRepository) {}
@@ -40,6 +41,9 @@ export class LoginServicesImpl implements ILoginServices {
         expiresIn: "1h",
       }
     );
+
+    await redisCacheService.set(`auth_token:${user.email}`, token, 3600);
+    console.log("Token armazenado no Redis:", token);
     return {
       user: {
         id: user.id,

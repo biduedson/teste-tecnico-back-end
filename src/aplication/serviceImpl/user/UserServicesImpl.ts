@@ -10,6 +10,14 @@ export class UserServcicesImpl implements IUserServices {
   constructor(private readonly _repository: IuserRepository) {}
 
   async validateCreate(userDto: UserDTO): Promise<void> {
+    if (userDto.email.length === 0) {
+      throw new BadRequestError("O campo de email não pode estar vazio.");
+    }
+
+    if (userDto.password.length === 0) {
+      throw new BadRequestError("O campo de password não pode estar vazio.");
+    }
+
     if (userDto.password.length < 6) {
       throw new BadRequestError("O password deve ter pelo menos 6 caracteres.");
     }

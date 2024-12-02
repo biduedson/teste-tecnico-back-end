@@ -91,4 +91,248 @@ src/
 
 ---
 
+...
+
+### 1. **Login**
+
+- **URL**: `POST /api/login`
+- **Descrição**: Autentica um usuário e retorna um token JWT para autorização nas rotas protegidas.
+- **Headers**:
+  - `Content-Type: application/json`
+
+### Corpo da Requisição (Request Body)
+
+```json
+{
+  "email": "usuario.exemplo@gmail.com",
+  "password": "senhaSegura123"
+}
+
+Resposta de Sucesso (200 OK)
+
+
+{
+  "user": {
+    "id": "cm46fd5yc0000bwqsuc2md075",
+    "email": "usuario.exemplo@gmail.com",
+    "createdAt": "2024-12-02T02:42:24.997Z",
+    "updatedAt": "2024-12-02T02:42:24.997Z"
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJpby5leGVtcGxvQGdtYWlsLmNvbSIsImlhdCI6MTczMzE0ODIyNSwiZXhwIjoxNzMzMTUxODI1fQ.Fa4D-91c9_BfMrqtdbSDE3w_7ccMuOKw53gzJ_zON-M"
+}
+
+
+Respostas de Erro
+
+{
+  "O e-mail fornecido não tem um formato válido."
+}
+(400 Bad Request)
+
+{
+  "A senha não pode estar vazia."
+}
+(400 Bad Request)
+
+{
+   "A senha não pode estar vazia."
+}
+(401 Unalthorizedt)
+
+```
+
+### 2. **Criar Usuário**
+
+- **URL**: `POST /api/user/`
+- **Descrição**: Cria um novo usuário com email e senha fornecidos.
+- **Headers**:
+  - `Content-Type: application/json`
+
+### Corpo da Requisição (Request Body)
+
+```json
+{
+  "email": "usuario.exemplo@gmail.com",
+  "password": "1111111111"
+}
+
+Resposta de Sucesso (201 Created)
+
+{
+  "id": "cm474l5270003bwkwxv52b1j5",
+  "email": "usuario.exemplo@gmail.com",
+  "createdAt": "2024-12-02T14:28:27.488Z",
+  "updatedAt": "2024-12-02T14:28:27.488Z"
+}
+
+
+Respostas de Erro
+
+{
+   "O password deve ter pelo menos 6 caracteres."
+}
+(400 Bad Request)
+
+{
+   "O e-mail fornecido não tem um formato válido."
+}
+(400 Bad Request)
+
+{
+   "O campo de email não pode estar vazio."
+}
+(400 Bad Request)
+
+{
+   "O campo de password não pode estar vazio."
+}
+(400 Bad Request)
+```
+
+### 3. **Criar Tarefa**
+
+- **URL**: `POST /api/task/`
+- **Descrição**: Cria uma nova tarefa com título, descrição, status e o ID do usuário associado.
+- **Headers**:
+  - `Content-Type: application/json`
+
+### Corpo da Requisição (Request Body)
+
+```json
+{
+  "title": "Finalizar relatório",
+  "description": "finalizar.",
+  "status": "PENDING",
+  "userId": "cm44gts4k0000bw8wf4w1c012"
+}
+
+
+
+Respostas de Erro
+
+{
+   "O título da tarefa não pode estar vazio."
+}
+(400 Bad Request)
+
+{
+   "A descrição da tarefa não pode estar vazia."
+}
+(400 Bad Request)
+
+{
+  "O campo de status não pode estar vazio."
+}
+(400 Bad Request)
+
+{
+   "O ID do usuário não pode estar vazio."
+}
+(400 Bad Request)
+
+{
+  "Usuario não encontrado."
+}
+(404 Bad Request)
+
+```
+
+### 4. **Atualizar Status da Tarefa**
+
+- **URL**: `PUT /api/task/:id`
+- **Descrição**: Atualiza o status de uma tarefa existente. O status pode ser alterado entre `PENDING` e `COMPLETE`.
+- **Headers**:
+  - `Content-Type: application/json`
+
+### Corpo da Requisição (Request Body)
+
+```json
+{
+  "id": "cm45y3at40001bw3sdtwghn9z",
+  "status": "COMPLETE"
+}
+
+Respostas de Erro
+
+{
+   "O id da tarefa não pode estar vazio."
+}
+(400 Bad Request)
+
+{
+   "O status da tarefa não pode estar vazio."
+}
+(400 Bad Request)
+
+{
+   "Usuario não encontrado."
+}
+(404 Not Found)
+
+```
+
+### 5. **Deletar Tarefa**
+
+- **URL**: `DELETE /api/task/:id`
+- **Descrição**: Deleta uma tarefa existente pelo `id` fornecido. O `id` da tarefa deve ser enviado como parâmetro na URL.
+- **Headers**:
+  - Nenhum cabeçalho adicional é necessário.
+
+### Parâmetros de URL
+
+- `id` (required): O `id` da tarefa que será deletada. Deve ser um valor válido.
+
+### Resposta de Sucesso (204 No Content)
+
+Se a tarefa for deletada com sucesso, a resposta será uma confirmação com o status `204 No Content`, sem corpo de resposta.
+
+```json
+{}
+
+
+Respostas de Erro
+
+{
+   "tarefa não Encontrada."
+}
+(404 Not Found)
+
+```
+
+---
+
+## Testes
+
+Para testar a API, você pode usar ferramentas como **Postman** ou **Insomnia** para enviar requisições HTTP e verificar as respostas. Não se esqueça de configurar o ambiente corretamente com as variáveis necessárias, como o `DATABASE_URL`, `JWT_SECRET` e outros parâmetros de configuração.
+
+## Considerações Finais
+
+- A API foi construída com as melhores práticas de segurança, como a utilização de **JWT (JSON Web Token)** para autenticação e **bcrypt** para criptografia de senhas.
+- Todas as respostas e erros estão padronizados em JSON, facilitando a integração com diferentes clientes.
+- A estrutura de pastas segue os princípios do **SOLID** e **Clean Architecture**, visando escalabilidade e manutenibilidade do código.
+- As rotas foram desenhadas para serem intuitivas e de fácil uso. Certifique-se de sempre passar os parâmetros corretos, como IDs de usuários ou tarefas, para evitar erros.
+- Em caso de problemas ou melhorias, fique à vontade para contribuir com o código! Qualquer feedback é muito bem-vindo.
+
+## Contribuindo
+
+Se você deseja contribuir para este projeto, siga os passos abaixo:
+
+1. Faça o **fork** do repositório.
+2. Crie uma nova branch (`git checkout -b feature/nova-funcionalidade`).
+3. Faça as alterações e **commit** (`git commit -am 'Adicionando nova funcionalidade'`).
+4. **Push** para a sua branch (`git push origin feature/nova-funcionalidade`).
+5. Envie um **pull request**.
+
+## Desenvolvedor
+
+Este projeto foi desenvolvido por **Edson Gomes Arruda Junior**, Desenvolvedor Full-Stack.
+
+---
+
+**Obrigado por utilizar nossa API!**
+
 Desenvolvido como parte de um teste técnico.
+
+```
+
+```

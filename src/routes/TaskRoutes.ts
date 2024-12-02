@@ -19,6 +19,7 @@ taskRoutes.post(
   "/task",
   JwtAuthorizationMiddlewares,
   async (req: Request, res: Response) => {
+    console.log("aqui");
     const { statusCode, body } = await controller.create({ body: req.body! });
     res.status(statusCode).json(body);
   }

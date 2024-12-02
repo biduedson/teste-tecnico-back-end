@@ -15,6 +15,10 @@ export class TaskServicesImpl implements ITaskService {
   ) {}
 
   async validateCreate(task: ITask): Promise<void> {
+    if (task.status.length === 0) {
+      throw new BadRequestError("O campo de status não pode estar vazio.");
+    }
+
     const newTask = new CreateTaskDTO(
       task.title,
       task.description,
@@ -43,7 +47,10 @@ export class TaskServicesImpl implements ITaskService {
     if (!taskExisting) {
       throw new NotFoundError("Esta tarefa não existe não existe.");
     }
-
+    const user = await this._userRepository.findUser(id);
+    if (!user) {
+      throw new NotFoundError("Usuario não encontrado.");
+    }
     const statusUpdated = await new UpdateTaskStatusDTO(id, status);
     const updateStatusErrors = await validate(statusUpdated);
 

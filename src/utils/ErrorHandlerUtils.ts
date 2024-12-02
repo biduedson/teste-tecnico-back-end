@@ -23,7 +23,7 @@ export const errorHandlerUtils = (error: Error): IHttpResponse<any> => {
   if (error instanceof TokenExpiredError) {
     return {
       statusCode: 401,
-      body: "Token expirado",
+      body: "Token expirado, faça login novamente.",
     };
   }
   if (error instanceof JsonWebTokenError) {
