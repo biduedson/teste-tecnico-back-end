@@ -39,13 +39,12 @@ Este projeto é uma API desenvolvida em Node.js utilizando TypeScript, Express e
    DATABASE_URL="STRING_DE_CONEXÃO_DO_BANCO_DE_DADOS"
    JWT_SECRET="SEGREDO_PARA_AUTENTICAÇÃO_JWT"
    REDIS_URL: URL do Redis para ambiente de produção (por exemplo, obtida através do Upstash ou outro provedor de Redis).
-   REDIS_URL_DEVELOPMENT: URL do Redis para ambiente de desenvolvimento (por exemplo, redis://localhost:6379).
+
    ```
 
    - **`DATABASE_URL`**: String de conexão para o banco PostgreSQL.
    - **`JWT_SECRET`**: Segredo usado para assinar e validar os tokens JWT.
    - **`REDIS_URL`**: URL_DO_REDIS_PRODUÇÃO.
-   - **`REDIS_URL_DEVELOPMENT`**: URL_DO_REDIS_DESENVOLVIMENTO.
 
    > **Nota**: Não inclua valores sensíveis diretamente no código. Certifique-se de configurar adequadamente as variáveis de ambiente.
 
