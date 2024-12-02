@@ -18,3 +18,8 @@ userRoutes.post("/user", async (req: Request, res: Response) => {
   const { statusCode, body } = await userController.create({ body: req.body! });
   res.status(statusCode).json(body);
 });
+userRoutes.post("/login", async (req: Request, res: Response) => {
+  console.log("aqui");
+  const { statusCode, body } = await userController.create({ body: req.body! });
+  res.status(statusCode).json(body);
+});

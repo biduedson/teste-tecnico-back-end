@@ -4,7 +4,7 @@ import { BadRequestError } from "../../domain/exeptions/BadRequestError";
 import { IUserServices } from "../interfaces/services/IUserServices";
 import { IuserRepository } from "../interfaces/repositories/user/IUserRepository";
 import { AlreadyExistsError } from "../../domain/exeptions/AlreadyExistsError";
-import { NotFoundError } from "../../domain/exeptions/NotFoundError";
+import bcypt from "bcrypt";
 
 export class UserServcicesImpl implements IUserServices {
   constructor(private readonly _repository: IuserRepository) {}
@@ -30,4 +30,8 @@ export class UserServcicesImpl implements IUserServices {
       throw new AlreadyExistsError("Ja existe um usuario com este email.");
     }
   }
+  encryptPassword = (password: string): string => {
+    const passwordBcrypt = bcypt.hashSync(password, 10);
+    return passwordBcrypt;
+  };
 }

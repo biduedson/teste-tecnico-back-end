@@ -15,10 +15,6 @@ export const JwtAuthorizationMiddlewares = (
       throw new TokenError("token não enviado");
     }
 
-    if (!authorization.startsWith("Bearer ")) {
-      throw new TokenError("Token inválido ou mal formatado");
-    }
-
     try {
       const token = authorization.replace("Bearer ", "").trim();
       jwt.verify(token, String(process.env.JWT_SECRET));

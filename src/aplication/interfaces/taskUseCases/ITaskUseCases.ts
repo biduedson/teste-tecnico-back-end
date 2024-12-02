@@ -1,4 +1,4 @@
-import { ITask } from "../../task/ITask";
+import { ITask } from "../task/ITask";
 
 export interface ITaskUseCases {
   create(task: Omit<ITask, "id">): Promise<ITask>;

@@ -13,11 +13,12 @@ export class UserUseCaseImpl implements IUserUseCases {
 
   async create(userDTO: UserDTO): Promise<Omit<IUser, "password">> {
     await this._userService.validateCreate(userDTO);
+    const encryptPassword = this._userService.encryptPassword(userDTO.password);
     const newUser = await this._repository.createUser(
       userDTO.email,
-      userDTO.password
+      encryptPassword
     );
-
+    console.log(encryptPassword);
     return newUser;
   }
 }

@@ -5,6 +5,7 @@ import { TaskServicesImpl } from "../aplication/serviceImpl/TaskServicesImpl";
 import { TaskController } from "../infrastructure/http/controllers/TaskController";
 import { TaskUseCAsesImpl } from "../aplication/taskUseCasesImpl/TasUseCasesImpl";
 import { UserRepositoryImpl } from "../infrastructure/repositories/user/UserRepositoryImpl";
+import { JwtAuthorizationMiddlewares } from "../infrastructure/http/middlewares/JwtAuthorizationMiddlewares";
 
 export const taskRoutes = Router();
 
@@ -16,7 +17,7 @@ const controller = new TaskController(useCases);
 
 taskRoutes.post(
   "/task",
-
+  JwtAuthorizationMiddlewares,
   async (req: Request, res: Response) => {
     const { statusCode, body } = await controller.create({ body: req.body! });
     res.status(statusCode).json(body);
@@ -25,6 +26,7 @@ taskRoutes.post(
 
 taskRoutes.delete(
   "/task/:id",
+  JwtAuthorizationMiddlewares,
   async (req: Request, res: Response, next: NextFunction) => {
     const { statusCode, body } = await controller.delete({
       params: req.params,
@@ -35,6 +37,7 @@ taskRoutes.delete(
 
 taskRoutes.patch(
   "/task",
+  JwtAuthorizationMiddlewares,
   async (req: Request, res: Response, next: NextFunction) => {
     const { statusCode, body } = await controller.update({ body: req.body! });
     res.status(statusCode).json(body);
@@ -43,6 +46,7 @@ taskRoutes.patch(
 
 taskRoutes.get(
   "/task",
+  JwtAuthorizationMiddlewares,
   async (req: Request, res: Response, next: NextFunction) => {
     const { statusCode, body } = await controller.tasks();
     res.status(statusCode).json(body);

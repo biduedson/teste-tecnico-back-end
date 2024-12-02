@@ -2,7 +2,7 @@ import { NextFunction } from "express";
 import { TokenError } from "../../domain/exeptions/TokenError";
 import { IHttpRequest } from "../interfaces/http/IHttpRequest";
 import { IJwtAuthorization } from "../interfaces/services/JwtAuthorization";
-import jwt, { JwtPayload, TokenExpiredError } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 export class JwtAuthorizationImpl implements IJwtAuthorization {
   async jwtAutorization(
