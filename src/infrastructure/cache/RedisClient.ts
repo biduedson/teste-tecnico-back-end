@@ -3,10 +3,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const redisUrl =
-  process.env.NODE_ENV === "production"
-    ? process.env.REDIS_URL
-    : process.env.REDIS_URL_DEVELOPMENT;
+const redisUrl = process.env.REDIS_URL;
 
 if (!redisUrl) {
   console.error("A URL do Redis não foi definida!");
