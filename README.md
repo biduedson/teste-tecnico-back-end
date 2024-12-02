@@ -68,6 +68,33 @@ Este projeto é uma API desenvolvida em Node.js utilizando TypeScript, Express e
    npm start
    ```
 
+### Para Usuários Windows
+
+Se você estiver utilizando o Windows, será necessário instalar o WSL (Windows Subsystem for Linux) e o Redis. Siga os passos abaixo:
+
+#### Instalar o WSL
+
+Se ainda não tiver o WSL instalado, abra o PowerShell como Administrador e execute o seguinte comando:
+
+```bash
+wsl --install
+
+Após a instalação, reinicie a máquina, se necessário.
+
+Instalar o Redis no WSL
+Abra o WSL (bash ou shell do Ubuntu, por exemplo).
+
+No WSL, instale o Redis com os seguintes comandos:
+
+sudo apt update
+sudo apt install redis-server
+
+Inicie o Redis no WSL com:
+sudo service redis-server start
+
+
+```
+
 ## Estrutura de Pastas
 
 A estrutura do projeto segue os princípios do SOLID e Clean Architecture:
