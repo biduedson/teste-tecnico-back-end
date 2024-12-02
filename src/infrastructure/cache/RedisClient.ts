@@ -1,11 +1,19 @@
 import Redis from "ioredis";
 import dotenv from "dotenv";
+
 dotenv.config();
 
-const redis = new Redis({
-  host: process.env.REDIS_HOST || "localhost",
-  port: Number(process.env.REDIS_PORT) || 6379,
-});
+const redisUrl =
+  process.env.NODE_ENV === "production"
+    ? process.env.REDIS_URL
+    : process.env.REDIS_URL_DEVELOPMENT;
+
+if (!redisUrl) {
+  console.error("A URL do Redis não foi definida!");
+  process.exit(1);
+}
+
+const redis = new Redis(redisUrl);
 
 redis.on("connect", () => {
   console.log("Conectado ao Redis");
