@@ -6,10 +6,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const ioredis_1 = __importDefault(require("ioredis"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-const redis = new ioredis_1.default({
-    host: process.env.REDIS_HOST || "localhost",
-    port: Number(process.env.REDIS_PORT) || 6379,
-});
+const redisUrl = process.env.REDIS_URL;
+if (!redisUrl) {
+    console.error("A URL do Redis não foi definida!");
+    process.exit(1);
+}
+const redis = new ioredis_1.default(redisUrl);
 redis.on("connect", () => {
     console.log("Conectado ao Redis");
 });
