@@ -1,8 +1,8 @@
-import { IHttpRequest } from "../../../aplication/interfaces/http/IHttpRequest";
-import { IHttpResponse } from "../../../aplication/interfaces/http/IHttpResponse";
-import { IUser } from "../../../aplication/interfaces/user/IUser";
-import { IUserUseCases } from "../../../aplication/interfaces/userUseCase/user/IUserUseCases";
-import { httpErrorResponse } from "../../../utils/HttpErrorResponse";
+import { IHttpRequest } from "../../../../aplication/interfaces/http/IHttpRequest";
+import { IHttpResponse } from "../../../../aplication/interfaces/http/IHttpResponse";
+import { IUser } from "../../../../aplication/interfaces/user/IUser";
+import { IUserUseCases } from "../../../../aplication/interfaces/useCases/user/IUserUseCases";
+import { httpErrorResponse } from "../../../../utils/HttpErrorResponse";
 
 export class UserController {
   constructor(private readonly _userUseCases: IUserUseCases) {}

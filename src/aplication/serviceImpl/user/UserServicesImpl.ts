@@ -1,9 +1,9 @@
 import { validate } from "class-validator";
-import { UserDTO } from "../dtos/userDTO";
-import { BadRequestError } from "../../domain/exeptions/BadRequestError";
-import { IUserServices } from "../interfaces/services/IUserServices";
-import { IuserRepository } from "../interfaces/repositories/user/IUserRepository";
-import { AlreadyExistsError } from "../../domain/exeptions/AlreadyExistsError";
+import { UserDTO } from "../../dtos/userDTO";
+import { BadRequestError } from "../../../domain/exeptions/BadRequestError";
+import { IUserServices } from "../../interfaces/services/IUserServices";
+import { IuserRepository } from "../../interfaces/repositories/user/IUserRepository";
+import { AlreadyExistsError } from "../../../domain/exeptions/AlreadyExistsError";
 import bcypt from "bcrypt";
 
 export class UserServcicesImpl implements IUserServices {

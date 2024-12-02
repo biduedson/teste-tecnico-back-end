@@ -1,12 +1,12 @@
 import { validate } from "class-validator";
-import { CreateTaskDTO } from "../dtos/task/CreateTaskDTO";
-import { ITaskService } from "../interfaces/services/ITaskService";
-import { ITask } from "../interfaces/task/ITask";
-import { BadRequestError } from "../../domain/exeptions/BadRequestError";
-import { ITaskRepository } from "../interfaces/repositories/task/ITaskRepository";
-import { UpdateTaskStatusDTO } from "../dtos/task/UpdateTaskStatusDTO";
-import { NotFoundError } from "../../domain/exeptions/NotFoundError";
-import { IuserRepository } from "../interfaces/repositories/user/IUserRepository";
+import { CreateTaskDTO } from "../../dtos/task/CreateTaskDTO";
+import { ITaskService } from "../../interfaces/services/ITaskService";
+import { ITask } from "../../interfaces/task/ITask";
+import { BadRequestError } from "../../../domain/exeptions/BadRequestError";
+import { ITaskRepository } from "../../interfaces/repositories/task/ITaskRepository";
+import { UpdateTaskStatusDTO } from "../../dtos/task/UpdateTaskStatusDTO";
+import { NotFoundError } from "../../../domain/exeptions/NotFoundError";
+import { IuserRepository } from "../../interfaces/repositories/user/IUserRepository";
 
 export class TaskServicesImpl implements ITaskService {
   constructor(

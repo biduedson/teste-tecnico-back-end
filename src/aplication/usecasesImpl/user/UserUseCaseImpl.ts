@@ -1,6 +1,6 @@
 import { UserDTO } from "../../dtos/userDTO";
 import { IuserRepository } from "../../interfaces/repositories/user/IUserRepository";
-import { IUserUseCases } from "../../interfaces/userUseCase/user/IUserUseCases";
+import { IUserUseCases } from "../../interfaces/useCases/user/IUserUseCases";
 import { IUser } from "../../interfaces/user/IUser";
 import { IUserServices } from "../../interfaces/services/IUserServices";
 import { AlreadyExistsError } from "../../../domain/exeptions/AlreadyExistsError";

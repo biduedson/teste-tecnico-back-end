@@ -1,9 +1,9 @@
 import { NextFunction, Router } from "express";
 import { Request, Response } from "express";
 import { TaskRepositoryImpl } from "../infrastructure/repositories/task/TaskRepositoryImpl";
-import { TaskServicesImpl } from "../aplication/serviceImpl/TaskServicesImpl";
-import { TaskController } from "../infrastructure/http/controllers/TaskController";
-import { TaskUseCAsesImpl } from "../aplication/taskUseCasesImpl/TasUseCasesImpl";
+import { TaskServicesImpl } from "../aplication/serviceImpl/task/TaskServicesImpl";
+import { TaskController } from "../infrastructure/http/controllers/task/TaskController";
+import { TaskUseCAsesImpl } from "../aplication/usecasesImpl/tasks/TasUseCasesImpl";
 import { UserRepositoryImpl } from "../infrastructure/repositories/user/UserRepositoryImpl";
 import { JwtAuthorizationMiddlewares } from "../infrastructure/http/middlewares/JwtAuthorizationMiddlewares";
 

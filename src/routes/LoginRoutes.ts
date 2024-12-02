@@ -1,8 +1,8 @@
 import { Request, Response, Router } from "express";
 import { UserRepositoryImpl } from "../infrastructure/repositories/user/UserRepositoryImpl";
-import { LoginServicesImpl } from "../aplication/serviceImpl/LoginServicesImpl";
-import { LoginUseCasesImpl } from "../aplication/userUseCasesImpl/login/LoginUseCasesImpl";
-import { Logincontroller } from "../infrastructure/http/controllers/LoginController";
+import { LoginServicesImpl } from "../aplication/serviceImpl/login/LoginServicesImpl";
+import { LoginUseCasesImpl } from "../aplication/usecasesImpl/login/LoginUseCasesImpl";
+import { Logincontroller } from "../infrastructure/http/controllers/login/LoginController";
 
 export const loginRoutes = Router();
 

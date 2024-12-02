@@ -1,8 +1,8 @@
-import { IHttpRequest } from "../../../aplication/interfaces/http/IHttpRequest";
-import { IHttpResponse } from "../../../aplication/interfaces/http/IHttpResponse";
-import { ITask } from "../../../aplication/interfaces/task/ITask";
-import { ITaskUseCases } from "../../../aplication/interfaces/taskUseCases/ITaskUseCases";
-import { httpErrorResponse } from "../../../utils/HttpErrorResponse";
+import { IHttpRequest } from "../../../../aplication/interfaces/http/IHttpRequest";
+import { IHttpResponse } from "../../../../aplication/interfaces/http/IHttpResponse";
+import { ITask } from "../../../../aplication/interfaces/task/ITask";
+import { ITaskUseCases } from "../../../../aplication/interfaces/useCases/tasks/ITaskUseCases";
+import { httpErrorResponse } from "../../../../utils/HttpErrorResponse";
 
 export class TaskController {
   constructor(private readonly _useCases: ITaskUseCases) {}

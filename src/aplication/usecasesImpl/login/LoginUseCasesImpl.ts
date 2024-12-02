@@ -1,7 +1,7 @@
 import { NotFoundError } from "../../../domain/exeptions/NotFoundError";
 import { ILoginResponse } from "../../interfaces/httpResponses/ILoginResponse";
 import { IuserRepository } from "../../interfaces/repositories/user/IUserRepository";
-import { ILoginUseCases } from "../../interfaces/userUseCase/login/ILoginUseCases";
+import { ILoginUseCases } from "../../interfaces/useCases/login/ILoginUseCases";
 import { ILoginServices } from "../../interfaces/services/ILoginServices";
 export class LoginUseCasesImpl implements ILoginUseCases {
   constructor(

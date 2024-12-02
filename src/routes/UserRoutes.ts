@@ -2,9 +2,9 @@ import { Router } from "express";
 import { Request, Response } from "express";
 
 import { UserRepositoryImpl } from "../infrastructure/repositories/user/UserRepositoryImpl";
-import { UserServcicesImpl } from "../aplication/serviceImpl/UserServicesImpl";
-import { UserUseCaseImpl } from "../aplication/userUseCasesImpl/user/UserUseCaseImpl";
-import { UserController } from "../infrastructure/http/controllers/UserController";
+import { UserServcicesImpl } from "../aplication/serviceImpl/user/UserServicesImpl";
+import { UserUseCaseImpl } from "../aplication/usecasesImpl/user/UserUseCaseImpl";
+import { UserController } from "../infrastructure/http/controllers/user/UserController";
 
 export const userRoutes = Router();
 

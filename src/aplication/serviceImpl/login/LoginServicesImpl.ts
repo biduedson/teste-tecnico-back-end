@@ -1,14 +1,14 @@
 import { validate } from "class-validator";
-import { LoginDTO } from "../dtos/login/LoginDTO";
-import { IuserRepository } from "../interfaces/repositories/user/IUserRepository";
-import { BadRequestError } from "../../domain/exeptions/BadRequestError";
-import { NotFoundError } from "../../domain/exeptions/NotFoundError";
+import { LoginDTO } from "../../dtos/login/LoginDTO";
+import { IuserRepository } from "../../interfaces/repositories/user/IUserRepository";
+import { BadRequestError } from "../../../domain/exeptions/BadRequestError";
+import { NotFoundError } from "../../../domain/exeptions/NotFoundError";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { IUser } from "../interfaces/user/IUser";
-import { ILoginResponse } from "../interfaces/httpResponses/ILoginResponse";
-import { UnauthorizedError } from "../../domain/exeptions/UnauthorizedError";
-import { ILoginServices } from "../interfaces/services/ILoginServices";
+import { IUser } from "../../interfaces/user/IUser";
+import { ILoginResponse } from "../../interfaces/httpResponses/ILoginResponse";
+import { UnauthorizedError } from "../../../domain/exeptions/UnauthorizedError";
+import { ILoginServices } from "../../interfaces/services/ILoginServices";
 
 export class LoginServicesImpl implements ILoginServices {
   constructor(private readonly _userRepository: IuserRepository) {}

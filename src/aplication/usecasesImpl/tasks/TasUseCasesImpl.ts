@@ -1,7 +1,7 @@
-import { ITaskRepository } from "../interfaces/repositories/task/ITaskRepository";
-import { ITaskService } from "../interfaces/services/ITaskService";
-import { ITaskUseCases } from "../interfaces/taskUseCases/ITaskUseCases";
-import { ITask } from "../interfaces/task/ITask";
+import { ITaskRepository } from "../../interfaces/repositories/task/ITaskRepository";
+import { ITaskService } from "../../interfaces/services/ITaskService";
+import { ITaskUseCases } from "../../interfaces/useCases/tasks/ITaskUseCases";
+import { ITask } from "../../interfaces/task/ITask";
 
 export class TaskUseCAsesImpl implements ITaskUseCases {
   constructor(
